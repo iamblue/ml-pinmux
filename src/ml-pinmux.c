@@ -3,7 +3,7 @@
 #include "pinmux.h"
 #include "microlattice.h"
 
-DELCARE_HANDLER(pinmux) {
+DELCARE_HANDLER(__pinmux) {
   uint8_t pin = (int)args_p[0].v_float32;
   uint8_t func = (int)args_p[1].v_float32;
 
@@ -15,5 +15,5 @@ DELCARE_HANDLER(pinmux) {
 }
 
 void ml_pinmux_init(void) {
-  REGISTER_HANDLER(pinmux);
+  REGISTER_HANDLER(__pinmux);
 }
