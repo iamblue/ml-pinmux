@@ -1,17 +1,16 @@
 #include <string.h>
-#include "jerry.h"
+#include "jerry-api.h"
 #include "pinmux.h"
 #include "microlattice.h"
 
 DELCARE_HANDLER(__pinmux) {
-  uint8_t pin = (int)args_p[0].v_float32;
-  uint8_t func = (int)args_p[1].v_float32;
+  uint8_t pin = (int) jerry_get_number_value(args_p[0]);
+
+  uint8_t func = (int) jerry_get_number_value(args_p[1]);
 
   hal_pinmux_set_function(pin, func);
 
-  ret_val_p->type = JERRY_API_DATA_TYPE_BOOLEAN;
-  ret_val_p->v_bool = true;
-  return true;
+  return jerry_create_boolean (true);
 }
 
 void ml_pinmux_init(void) {
